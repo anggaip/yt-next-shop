@@ -5,6 +5,7 @@ export type Category = {
   description?: string | null;
   imageUrl?: string | null;
   parentId?: string | null;
+  parent_id?: string | null;
 };
 
 export type Variant = {
