@@ -8,12 +8,12 @@ export const metadata: Metadata = {
 };
 
 type ProductsPageProps = {
-  searchParams?: {
+  searchParams?: Promise<{
     search?: string;
     category?: string;
     page?: string;
     sort?: "price_asc" | "price_desc" | "newest";
-  };
+  }>;
 };
 
 const parseNumber = (value?: string) => {
@@ -21,12 +21,14 @@ const parseNumber = (value?: string) => {
   return Number.isFinite(parsed) && parsed > 0 ? parsed : 1;
 };
 
-export default function ProductsPage({ searchParams }: ProductsPageProps) {
+export default async function ProductsPage({ searchParams }: ProductsPageProps) {
+  const params = (await searchParams) ?? {};
+
   const initial = {
-    search: searchParams?.search ?? "",
-    category: searchParams?.category ?? "",
-    page: parseNumber(searchParams?.page),
-    sort: searchParams?.sort ?? "newest",
+    search: params.search ?? "",
+    category: params.category ?? "",
+    page: parseNumber(params.page),
+    sort: params.sort ?? "newest",
   } as const;
 
   return (
