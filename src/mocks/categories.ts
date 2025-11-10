@@ -1,68 +1,12 @@
 import type { Category } from "@/lib/types";
 
-export const categories: Category[] = [
-  {
-    id: "cat-ai-devices",
-    name: "Perangkat AI",
-    slug: "perangkat-ai",
-    description: "Perangkat keras untuk eksperimen AI dan IoT.",
-    parentId: null,
-    parent_id: null,
-  },
-  {
-    id: "cat-smart-home",
-    name: "Smart Home",
-    slug: "smart-home",
-    description: "Perangkat rumah pintar terintegrasi AI.",
-    parentId: null,
-    parent_id: null,
-  },
-  {
-    id: "cat-learning-kit",
-    name: "Learning Kit",
-    slug: "learning-kit",
-    description: "Paket pembelajaran AI lengkap.",
-    parentId: null,
-    parent_id: null,
-  },
-  {
-    id: "cat-vision-module",
-    name: "Vision Module",
-    slug: "vision-module",
-    description: "Modul kamera dan penglihatan komputer.",
-    parentId: "cat-ai-devices",
-    parent_id: "cat-ai-devices",
-  },
-  {
-    id: "cat-voice-assistant",
-    name: "Voice Assistant",
-    slug: "voice-assistant",
-    description: "Perangkat speaker pintar dan mikrofon AI.",
-    parentId: "cat-smart-home",
-    parent_id: "cat-smart-home",
-  },
-  {
-    id: "cat-robotics",
-    name: "Robotik",
-    slug: "robotik",
-    description: "Komponen robot dan otomasi.",
-    parentId: "cat-ai-devices",
-    parent_id: "cat-ai-devices",
-  },
-  {
-    id: "cat-cloud-service",
-    name: "Layanan Cloud",
-    slug: "layanan-cloud",
-    description: "Langganan cloud inference dan data labeling.",
-    parentId: null,
-    parent_id: null,
-  },
-  {
-    id: "cat-accessories",
-    name: "Aksesori",
-    slug: "aksesori",
-    description: "Sensor, casing, dan konektor tambahan.",
-    parentId: "cat-ai-devices",
-    parent_id: "cat-ai-devices",
-  },
-];
+import { categoriesTable } from "./catalog";
+
+export const categories: Category[] = categoriesTable.map((row) => ({
+  id: row.id,
+  name: row.name,
+  slug: row.slug,
+  description: row.description,
+  parentId: row.parent_id ?? null,
+  parent_id: row.parent_id ?? null,
+}));

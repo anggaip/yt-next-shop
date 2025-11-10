@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { CategoriesSection } from "@/components/categories/CategoriesSection";
+import { HomeProducts } from "@/components/products/HomeProducts";
 
 export default function Home() {
   return (
@@ -28,6 +29,7 @@ export default function Home() {
       </section>
 
       <CategoriesSection />
+      <HomeProducts />
     </div>
   );
 }
