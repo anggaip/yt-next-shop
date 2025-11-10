@@ -18,6 +18,10 @@ export type Variant = {
   attributes: Record<string, string | number>;
   imageUrl?: string | null;
   isDefault?: boolean;
+  optionJson?: Record<string, string>;
+  option_json?: Record<string, string>;
+  priceOverride?: number;
+  price_override?: number;
 };
 
 export type Product = {

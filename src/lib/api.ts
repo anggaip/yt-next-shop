@@ -48,14 +48,33 @@ const shouldSerializeBody = (
   );
 };
 
-const normalizeURL = (baseURL: string, input: string | URL) => {
+const getFallbackOrigin = () => {
+  if (typeof window !== "undefined") {
+    return window.location.origin;
+  }
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    return process.env.NEXT_PUBLIC_SITE_URL;
+  }
+  if (process.env.VERCEL_URL) {
+    const url = process.env.VERCEL_URL;
+    return url.startsWith("http") ? url : `https://${url}`;
+  }
+  return "http://localhost:3000";
+};
+
+const normalizeURL = (baseURL: string, input: string | URL): string | URL => {
   if (input instanceof URL) return input;
   if (baseURL) {
     return new URL(input, baseURL);
   }
 
-  const fallback = typeof window !== "undefined" ? window.location.origin : "http://localhost";
-  return new URL(input, fallback);
+  const origin = getFallbackOrigin();
+
+  if (typeof input === "string" && input.startsWith("/")) {
+    return new URL(input, origin);
+  }
+
+  return new URL(input, origin);
 };
 
 const parseJSON = async <T>(response: Response): Promise<T> => {

@@ -1,5 +1,5 @@
 import { apiFetch } from "@/lib/api";
-import type { Paginated, Product } from "@/lib/types";
+import type { Paginated, Product, Variant } from "@/lib/types";
 
 export type ProductsQuery = {
   search?: string;
@@ -19,4 +19,13 @@ export const fetchProducts = async (params: ProductsQuery) => {
   const basePath = "/api/products";
   const endpoint = queryString ? `${basePath}?${queryString}` : basePath;
   return apiFetch<Paginated<Product>>(endpoint);
+};
+
+export type ProductDetailResponse = {
+  product: Product;
+  variants: Variant[];
+};
+
+export const fetchProductDetail = async (slug: string) => {
+  return apiFetch<ProductDetailResponse>(`/api/products/${slug}`);
 };
