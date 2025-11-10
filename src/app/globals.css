@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 224 71% 4%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215 16% 46.9%;
+  --border: 214 32% 91.4%;
+  --input: 214 32% 91.4%;
+  --ring: 221 83% 53.3%;
+  --radius: 0.75rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: 222 47% 10%;
+    --foreground: 210 40% 98%;
+    --muted: 223 31% 18%;
+    --muted-foreground: 216 20% 72%;
+    --border: 217 19% 27%;
+    --input: 217 19% 27%;
+    --ring: 221 83% 74%;
+  }
+}
+
+* {
+  @apply border-border;
+}
+
+body {
+  @apply bg-background text-foreground font-sans antialiased min-h-screen;
+}
+
+::-moz-selection {
+  @apply bg-ring/20;
+}
+
+::selection {
+  @apply bg-ring/20;
+}
